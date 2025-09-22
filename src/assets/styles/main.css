@@ -1,0 +1,344 @@
+/* ==========================================================================
+   1. DESIGN TOKENS (VARIABLES)
+   ========================================================================== */
+:root {
+  /* Layout & Sizes */
+  --min-width: 320px;
+  --max-width: 1200px;
+  --side-padding: 40px;
+  --side-padding-sm: 15px;
+
+  /* Base Colors */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* Red Palette */
+  --color-red-1: #ff4757; /* Playoffs highlight & tags */
+  --color-red-2: #c95151; /* Opponent labels & total */
+  --color-red-3: #c62828; /* Summary low game count */
+
+  /* Green Palette */
+  --color-green-1: #2ed573; /* Full slot count & Team total */
+  --color-green-2: #2e7d32; /* Summary high game count */
+
+  /* Orange Palette */
+  --color-orange-1: #ffc486; /* Scroll button background */
+  --color-orange-2: #fe9729; /* Scroll button hover background */
+  --color-orange-3: #ffa502; /* Bench overflow badge */
+
+  /* Typography & Base Theme */
+  --font-family-base: 'Montserrat', sans-serif;
+  --base-bg: var(--color-white);
+  --text-color: var(--color-black);
+  --title-color: var(--color-black);
+  --transition-dur: 0.2s;
+
+  --base-font-weight: normal;
+  --base-font-size: 20px;
+  --base-font-size-mob: 18px;
+  --base-line-height: 1.4;
+
+  /* Titles Typography */
+  --title-font-weight: 600;
+  --title-line-height: 1.2;
+  --font-size-h1: 48px;
+  --font-size-h2: 30px;
+  --font-size-h3: 26px;
+}
+
+/* ==========================================================================
+   2. RESET CSS & GLOBAL STYLES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100% !important;
+  margin: auto;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-width: var(--min-width);
+  min-height: 100vh;
+  height: 100% !important;
+  position: relative;
+  font-family: var(--font-family-base);
+  font-size: var(--base-font-size);
+  font-weight: var(--base-font-weight);
+  line-height: var(--base-line-height);
+  background: var(--base-bg);
+  color: var(--text-color);
+  text-rendering: optimizeSpeed;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: var(--base-font-size-mob);
+  }
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  user-select: none;
+  transition: var(--transition-dur) linear;
+}
+
+a {
+  color: var(--color-black);
+  text-decoration: none;
+  transition: var(--transition-dur) linear;
+}
+
+hr {
+  height: 2px;
+  margin: 20px 0;
+  border: none;
+  background: var(--color-black);
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   3. LAYOUT & CONTAINERS
+   ========================================================================== */
+.page-container {
+  min-height: 100%;
+  margin: auto;
+  padding: 20px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.main {
+  width: 100%;
+  min-width: 0;
+  flex: 1 0 auto;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--side-padding);
+  padding-left: var(--side-padding);
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-right: var(--side-padding-sm);
+    padding-left: var(--side-padding-sm);
+  }
+}
+
+/* ==========================================================================
+   4. TYPOGRAPHY & TITLES
+   ========================================================================== */
+.title-1, h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+  color: var(--title-color);
+}
+
+.title-2, h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+  color: var(--title-color);
+}
+
+.title-3, h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+  color: var(--title-color);
+}
+
+@media (max-width: 767px) {
+  .title-2, h2 { font-size: 25px; }
+  .title-3, h3 { font-size: 20px; }
+}
+
+/* ==========================================================================
+   5. COMPONENTS & DASHBOARD STYLES
+   ========================================================================== */
+
+/* Floating Scroll Buttons */
+.scroll-button {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-orange-1);
+  border: none;
+  border-radius: 50%;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 10;
+}
+
+.scroll-button:hover {
+  background: var(--color-orange-2);
+}
+
+.scroll-button svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: var(--color-black);
+  position: relative;
+  bottom: -1px;
+}
+
+.scroll-button--bottom {
+  top: auto;
+  bottom: 40px;
+}
+
+.scroll-button--bottom svg {
+  bottom: -2px;
+}
+
+@media (max-width: 767px) {
+  .scroll-button {
+    display: none;
+  }
+}
+
+/* Season Total Block */
+.season-total {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  .season-total {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.season-total__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--title-font-weight);
+}
+
+/* Week Card */
+.week {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-black);
+}
+
+@media (max-width: 767px) {
+  .week {
+    margin-bottom: 20px;
+  }
+}
+
+.week--playoffs {
+  border: 2px solid var(--color-red-1);
+  background-color: rgba(255, 71, 87, 0.05);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.week__title {
+  margin-bottom: 20px;
+  font-size: var(--font-size-h2);
+  font-weight: var(--title-font-weight);
+}
+
+.week__tag {
+  background-color: var(--color-red-1);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+/* Days List */
+.day {
+  padding: 5px 10px;
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.day.no-games {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.day.disabled {
+  opacity: 0.3;
+}
+
+.day.disabled.no-games {
+  opacity: 0.15;
+}
+
+.day.full .day__count {
+  color: var(--color-green-1);
+}
+
+.day.overflow {
+  background-color: rgba(255, 165, 0, 0.1);
+}
+
+.day:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 767px) {
+  .day {
+    display: block;
+  }
+}
+
+.day__count {
+  font-weight: 600;
+  margin-right: 4px;
