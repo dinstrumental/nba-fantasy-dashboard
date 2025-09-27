@@ -40,12 +40,19 @@ export const useScheduleStore = defineStore('schedule', () => {
         gamesByDateMap[dateStr] = playingTeams
       })
 
-      const startDate = new Date(2026, 9, 19)
-      const endDate = new Date(2027, 3, 4)
+      const formatDateKey = (date) => {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+      }
+
+      const startDate = new Date(2025, 9, 20)
+      const endDate = new Date(2026, 3, 5)
       const today = new Date()
       today.setHours(0, 0, 0, 0)
 
-      const mergedWeekStarts = new Set(['2026-11-30', '2027-02-15'])
+      const mergedWeekStarts = new Set(['2026-02-09'])
 
       const computedWeeks = []
       let currentDate = new Date(startDate)
@@ -53,8 +60,9 @@ export const useScheduleStore = defineStore('schedule', () => {
       let calculatedTotalSeason = 0
 
       while (currentDate <= endDate) {
-        const currentWeekStartStr = formatDate(currentDate)
+        const currentWeekStartStr = formatDateKey(currentDate)
         const daysInCurrentWeek = mergedWeekStarts.has(currentWeekStartStr) ? 14 : 7
+
         let weekTotalGames = 0
         let weekOpponentTotalGames = 0
 
