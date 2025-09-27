@@ -44,6 +44,9 @@
   --font-size-h1: 48px;
   --font-size-h2: 30px;
   --font-size-h3: 26px;
+  --font-size-h4: 22px;
+  --font-size-h5: 20px;
+  --font-size-h6: 20px;
 }
 
 /* ==========================================================================
@@ -87,17 +90,36 @@ body {
   }
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-img, picture, video, canvas, svg {
+ol {
+  counter-reset: item;
+}
+
+ol > li::before {
+  content: counter(item, decimal) '. ';
+  counter-increment: item;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select,
+label {
+  font-family: var(--font-family-base);
   font: inherit;
   outline: none;
 }
@@ -123,7 +145,8 @@ hr {
   background: var(--color-black);
 }
 
-b, strong {
+b,
+strong {
   font-weight: 600;
 }
 
@@ -173,30 +196,63 @@ b, strong {
 /* ==========================================================================
    4. TYPOGRAPHY & TITLES
    ========================================================================== */
-.title-1, h1 {
+.title-1,
+h1 {
   font-size: var(--font-size-h1);
   font-weight: var(--title-font-weight);
   line-height: var(--title-line-height);
   color: var(--title-color);
 }
 
-.title-2, h2 {
+.title-2,
+h2 {
   font-size: var(--font-size-h2);
   font-weight: var(--title-font-weight);
   line-height: var(--title-line-height);
   color: var(--title-color);
 }
 
-.title-3, h3 {
+.title-3,
+h3 {
   font-size: var(--font-size-h3);
   font-weight: var(--title-font-weight);
   line-height: var(--title-line-height);
   color: var(--title-color);
 }
 
+.title-4,
+h4 {
+  font-size: var(--font-size-h4);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+  color: var(--title-color);
+}
+
+.title-5,
+h5 {
+  font-size: var(--font-size-h5);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+  color: var(--title-color);
+}
+
+.title-6,
+h6 {
+  font-size: var(--font-size-h6);
+  font-weight: var(--title-font-weight);
+  line-height: var(--title-line-height);
+  color: var(--title-color);
+}
+
 @media (max-width: 767px) {
-  .title-2, h2 { font-size: 25px; }
-  .title-3, h3 { font-size: 20px; }
+  .title-2,
+  h2 {
+    font-size: 25px;
+  }
+  .title-3,
+  h3 {
+    font-size: 20px;
+  }
 }
 
 /* ==========================================================================
@@ -232,12 +288,14 @@ b, strong {
   bottom: -1px;
 }
 
-.scroll-button--bottom {
+.scroll-button--bottom,
+.scroll-button_bottom {
   top: auto;
   bottom: 40px;
 }
 
-.scroll-button--bottom svg {
+.scroll-button--bottom svg,
+.scroll-button_bottom svg {
   bottom: -2px;
 }
 
@@ -278,7 +336,8 @@ b, strong {
   }
 }
 
-.week--playoffs {
+.week--playoffs,
+.week_playoffs {
   border: 2px solid var(--color-red-1);
   background-color: rgba(255, 71, 87, 0.05);
   border-radius: 8px;
@@ -342,3 +401,89 @@ b, strong {
 .day__count {
   font-weight: 600;
   margin-right: 4px;
+}
+
+.day__status {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.day__label {
+  min-width: 207px;
+  padding-right: 10px;
+  text-align-last: justify;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.day__overflow {
+  color: var(--color-orange-3);
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.day__players {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .day__players,
+  .day__no-games {
+    display: block;
+  }
+}
+
+.day__players b {
+  font-weight: 600;
+}
+
+.day__opponent {
+  display: block;
+  color: rgba(201, 81, 81, 0.85);
+}
+
+.day__opponent b {
+  color: var(--color-red-2);
+}
+
+/* Matchup Summary Box */
+.summary {
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 20px 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 3px solid #ccc;
+  line-height: 1.5;
+}
+
+.summary__high {
+  color: var(--color-green-2);
+  font-weight: 600;
+}
+
+.summary__low {
+  color: var(--color-red-3);
+  font-weight: 600;
+}
+
+.summary__opponent {
+  margin-top: 5px;
+  padding-top: 5px;
+  display: block;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Totals */
+.total {
+  font-size: var(--font-size-h3);
+  font-weight: var(--title-font-weight);
+}
+
+.total__team {
+  color: var(--color-green-1);
+}
+
+.total__opponent {
+  color: var(--color-red-2);
+}
