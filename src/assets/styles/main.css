@@ -318,6 +318,9 @@ h6 {
 }
 
 .season-total__title {
+  display: inline-block;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-black);
   font-size: var(--font-size-h2);
   font-weight: var(--title-font-weight);
 }
