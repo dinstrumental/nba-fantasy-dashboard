@@ -13,18 +13,18 @@
   --color-white: #ffffff;
 
   /* Red Palette */
-  --color-red-1: #ff4757; /* Playoffs highlight & tags */
-  --color-red-2: #c95151; /* Opponent labels & total */
-  --color-red-3: #c62828; /* Summary low game count */
+  --color-red-1: #ff4757;
+  --color-red-2: #c95151;
+  --color-red-3: #c62828;
 
   /* Green Palette */
-  --color-green-1: #2ed573; /* Full slot count & Team total */
-  --color-green-2: #2e7d32; /* Summary high game count */
+  --color-green-1: #2ed573;
+  --color-green-2: #3e7d32;
 
   /* Orange Palette */
-  --color-orange-1: #ffc486; /* Scroll button background */
-  --color-orange-2: #fe9729; /* Scroll button hover background */
-  --color-orange-3: #ffa502; /* Bench overflow badge */
+  --color-orange-1: #ffc486;
+  --color-orange-2: #fe9729;
+  --color-orange-3: #ffa502;
 
   /* Typography & Base Theme */
   --font-family-base: 'Montserrat', sans-serif;
@@ -34,8 +34,8 @@
   --transition-dur: 0.2s;
 
   --base-font-weight: normal;
-  --base-font-size: 20px;
-  --base-font-size-mob: 18px;
+  --base-font-size: 18px;
+  --base-font-size-mob: 16px;
   --base-line-height: 1.4;
 
   /* Titles Typography */
@@ -270,8 +270,8 @@ h6 {
   border: none;
   border-radius: 50%;
   position: fixed;
-  top: 40px;
-  right: 40px;
+  top: 20px;
+  right: 20px;
   z-index: 10;
 }
 
@@ -291,7 +291,7 @@ h6 {
 .scroll-button--bottom,
 .scroll-button_bottom {
   top: auto;
-  bottom: 40px;
+  bottom: 20px;
 }
 
 .scroll-button--bottom svg,
@@ -318,11 +318,15 @@ h6 {
 }
 
 .season-total__title {
-  display: inline-block;
-  vertical-align: top;
-  border-bottom: 1px solid var(--color-black);
   font-size: var(--font-size-h2);
   font-weight: var(--title-font-weight);
+  color: var(--color-green-2);
+}
+
+@media (max-width: 767px) {
+  .season-total__title {
+    font-size: 25px;
+  }
 }
 
 /* Week Card */
@@ -330,6 +334,10 @@ h6 {
   margin-bottom: 40px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--color-black);
+}
+
+.week:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 767px) {
@@ -352,6 +360,12 @@ h6 {
   font-weight: var(--title-font-weight);
 }
 
+@media (max-width: 767px) {
+  .week__title {
+    font-size: 25px;
+  }
+}
+
 .week__tag {
   background-color: var(--color-red-1);
   color: var(--color-white);
@@ -367,6 +381,7 @@ h6 {
 /* Days List */
 .days {
   background: rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
   border-radius: 10px;
 }
 
@@ -395,7 +410,7 @@ h6 {
 }
 
 .day.full .day__count {
-  color: var(--color-green-1);
+  color: var(--color-green-2);
 }
 
 .day.overflow {
@@ -424,11 +439,18 @@ h6 {
 }
 
 .day__label {
-  min-width: 207px;
+  min-width: 180px;
   padding-right: 10px;
   text-align-last: justify;
+  word-spacing: -5px;
   flex-shrink: 0;
   font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .day__label {
+    word-spacing: normal;
+  }
 }
 
 .day__overflow {
@@ -455,11 +477,7 @@ h6 {
 
 .day__opponent {
   display: block;
-  color: rgba(201, 81, 81, 0.85);
-}
-
-.day__opponent b {
-  color: var(--color-red-2);
+  color: var(--color-red-3);
 }
 
 /* Matchup Summary Box */
@@ -503,8 +521,14 @@ h6 {
   font-weight: var(--title-font-weight);
 }
 
+@media (max-width: 767px) {
+  .total {
+    font-size: 21px;
+  }
+}
+
 .total__team {
-  color: var(--color-green-1);
+  color: var(--color-green-2);
 }
 
 .total__opponent {

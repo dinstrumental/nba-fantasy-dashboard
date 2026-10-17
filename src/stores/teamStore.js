@@ -6,9 +6,21 @@ export const useTeamStore = defineStore('team', () => {
   const myTeam = ref(initialMyTeam)
   const opponents = ref(initialOpponents)
 
+  const isAppLoaded = ref(false)
+
   function updateMyTeam(newRoster) {
     myTeam.value = newRoster
   }
 
-  return { myTeam, opponents, updateMyTeam }
+  function setAppLoaded(status) {
+    isAppLoaded.value = status
+  }
+
+  return {
+    myTeam,
+    opponents,
+    isAppLoaded,
+    updateMyTeam,
+    setAppLoaded,
+  }
 })

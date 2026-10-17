@@ -78,11 +78,23 @@ const onImageError = (e) => {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 767px) {
+  .roster-panel {
+    margin-bottom: 30px;
+  }
+}
+
 .roster-panel__title {
   font-size: var(--font-size-h2);
   font-weight: var(--title-font-weight);
   margin-bottom: 20px;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .roster-panel__title {
+    font-size: 25px;
+  }
 }
 
 .roster-list {
@@ -133,6 +145,12 @@ const onImageError = (e) => {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+}
+
+@media (max-width: 767px) {
+  .roster-card__name {
+    font-size: 14px;
+  }
 }
 
 .roster-card__positions {

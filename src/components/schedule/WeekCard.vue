@@ -208,7 +208,6 @@ const getWinClass = (cat, isMyTeam) => {
 
 .proj-table th {
   padding: 8px 4px;
-  color: #64748b;
   font-weight: 600;
   background: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid #e2e8f0;
@@ -219,26 +218,33 @@ const getWinClass = (cat, isMyTeam) => {
   border-bottom: 1px solid #e2e8f0;
 }
 
+@media (max-width: 767px) {
+  .proj-table td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
 .proj-table tr:last-child td {
   border-bottom: none;
 }
 
 .proj-team-name {
   text-align: left;
-  font-weight: 700;
-  color: #0f172a;
+  font-weight: bold;
 }
 
 /* Soft, eye-friendly colors for wins and losses */
 .stat-win {
   background-color: rgba(34, 197, 94, 0.15); /* Soft green */
-  color: #166534;
+  color: var(--color-green-2);
   font-weight: 700;
   border-radius: 4px;
 }
 
 .stat-lose {
   background-color: rgba(239, 68, 68, 0.1); /* Soft red */
-  color: #991b1b;
+  font-weight: 500;
+  color: var(--color-red-3);
 }
 </style>
