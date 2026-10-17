@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { useTeamStore } from '@/stores/teamStore'
 import { getShortName } from '@/utils/fantasyMath'
 import DayItem from './DayItem.vue'
@@ -9,25 +10,26 @@ const props = defineProps({
 
 const teamStore = useTeamStore()
 
-function formatSummary(playersList, countsObj) {
+const currentOpponent = computed(() => {
+  return teamStore.opponents.find((opp) => opp.weeks.includes(props.week.weekNum))
+})
+
+const formatWeeklyGamesHtml = (playersList, countsObj) => {
+  if (!playersList || !countsObj) return ''
+
   return playersList
     .filter((p) => p.tricode)
     .map((p) => {
       const count = countsObj[p.name] || 0
-      let colorClass = ''
-      if (count >= 4) colorClass = 'summary__high'
-      else if (count <= 2) colorClass = 'summary__low'
-      return { name: getShortName(p.name), count, colorClass }
-    })
-}
+      const shortName = getShortName(p.name)
 
-const formatWeeklyGames = (gamesObj) => {
-  if (!gamesObj) return ''
+      if (count >= 4) {
+        return `<span class="summary__high">${shortName} (${count})</span>`
+      } else if (count <= 2) {
+        return `<span class="summary__low">${shortName} (${count})</span>`
+      }
 
-  return Object.entries(gamesObj)
-    .map(([name, count]) => {
-      const shortName = getShortName(name)
-      return `${shortName} (${count})`
+      return `<span>${shortName} (${count})</span>`
     })
     .join(', ')
 }
@@ -46,16 +48,10 @@ const formatWeeklyGames = (gamesObj) => {
     </ul>
 
     <div class="summary">
-      <template
-        v-for="(item, idx) in formatSummary(teamStore.myTeam, week.myWeeklyGames)"
-        :key="idx"
-      >
-        <span :class="item.colorClass">{{ item.name }} ({{ item.count }})</span>
-        <template v-if="idx < teamStore.myTeam.length - 1">, </template>
-      </template>
+      <span v-html="formatWeeklyGamesHtml(teamStore.myTeam, week.myWeeklyGames)"></span>
 
-      <div class="summary__opponent" v-if="week.hasOpponent">
-        {{ formatWeeklyGames(week.oppWeeklyGames) }}
+      <div class="summary__opponent" v-if="week.hasOpponent && currentOpponent">
+        <span v-html="formatWeeklyGamesHtml(currentOpponent.players, week.oppWeeklyGames)"></span>
       </div>
     </div>
 

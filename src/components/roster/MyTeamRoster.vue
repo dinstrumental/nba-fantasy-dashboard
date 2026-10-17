@@ -1,4 +1,3 @@
-<!-- В файле src/components/MyTeamRoster.vue -->
 <script setup>
 import { computed } from 'vue'
 import { useTeamStore } from '@/stores/teamStore'
@@ -20,16 +19,16 @@ const getInitials = (fullName) => {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
 }
 
-// Новая функция для формирования ссылки на CDN NBA
+// New feature for generating NBA CDN links
 const getAvatarUrl = (personId) => {
   if (!personId) return null
   return `https://cdn.nba.com/headshots/nba/latest/260x190/${personId}.png`
 }
 
-// Функция для обработки ошибки загрузки фото (например, если игрок еще без фото)
+// Photo upload error handling feature (e.g., if a player doesn't have a photo yet)
 const onImageError = (e) => {
   e.target.style.display = 'none'
-  e.target.nextElementSibling.style.display = 'flex' // Показываем инициалы
+  e.target.nextElementSibling.style.display = 'flex' // Show initials
 }
 </script>
 
@@ -40,14 +39,14 @@ const onImageError = (e) => {
       <div class="roster-list">
         <div v-for="player in myPlayers" :key="player.name" class="roster-card">
           <div class="roster-card__avatar">
-            <!-- Пытаемся загрузить фото с CDN -->
+            <!-- Try to uplaod photo from CDN -->
             <img
               v-if="player.personId"
               :src="getAvatarUrl(player.personId)"
               :alt="player.name"
               @error="onImageError"
             />
-            <!-- Заглушка с инициалами (показывается, если personId нет или фото не загрузилось) -->
+            <!-- Initials placeholder (displayed if personId is missing or the photo fails to load) -->
             <span
               class="roster-card__initials"
               :style="{ display: player.personId ? 'none' : 'flex' }"
