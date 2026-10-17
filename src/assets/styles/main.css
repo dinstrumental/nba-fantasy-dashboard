@@ -4,7 +4,7 @@
 :root {
   /* Layout & Sizes */
   --min-width: 320px;
-  --max-width: 1200px;
+  --max-width: 1400px;
   --side-padding: 40px;
   --side-padding-sm: 15px;
 
@@ -341,8 +341,7 @@ h6 {
   border: 2px solid var(--color-red-1);
   background-color: rgba(255, 71, 87, 0.05);
   border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 16px;
+  padding: 20px;
 }
 
 .week__title {
@@ -358,14 +357,27 @@ h6 {
   font-weight: bold;
   padding: 2px 8px;
   border-radius: 4px;
-  margin-left: 8px;
+  margin-left: 6px;
+  position: relative;
+  bottom: 4px;
 }
 
 /* Days List */
+.days {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+}
+
 .day {
-  padding: 5px 10px;
+  padding: 8px 20px;
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.day:first-child {
+  border-radius: 10px 10px 0 0;
+}
+.day:last-child {
+  border-radius: 0 0 10px 10px;
 }
 
 .day.no-games {
@@ -394,13 +406,14 @@ h6 {
 
 @media (max-width: 767px) {
   .day {
+    padding-left: 15px;
+    padding-right: 15px;
     display: block;
   }
 }
 
 .day__count {
   font-weight: 600;
-  margin-right: 4px;
 }
 
 .day__status {
@@ -450,11 +463,19 @@ h6 {
 /* Matchup Summary Box */
 .summary {
   font-size: 16px;
-  padding: 5px 10px;
+  padding: 8px 17px;
   margin: 20px 0;
   background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
   border: 3px solid #ccc;
   line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .summary {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 .summary__high {
@@ -468,8 +489,8 @@ h6 {
 }
 
 .summary__opponent {
-  margin-top: 5px;
-  padding-top: 5px;
+  margin-top: 8px;
+  padding-top: 8px;
   display: block;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
 }

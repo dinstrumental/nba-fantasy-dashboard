@@ -20,6 +20,17 @@ function formatSummary(playersList, countsObj) {
       return { name: getShortName(p.name), count, colorClass }
     })
 }
+
+const formatWeeklyGames = (gamesObj) => {
+  if (!gamesObj) return ''
+
+  return Object.entries(gamesObj)
+    .map(([name, count]) => {
+      const shortName = getShortName(name)
+      return `${shortName} (${count})`
+    })
+    .join(', ')
+}
 </script>
 
 <template>
@@ -43,17 +54,8 @@ function formatSummary(playersList, countsObj) {
         <template v-if="idx < teamStore.myTeam.length - 1">, </template>
       </template>
 
-      <div v-if="week.hasOpponent" class="summary__opponent">
-        <template
-          v-for="(item, idx) in formatSummary(
-            teamStore.opponents.find((o) => o.weeks.includes(week.weekNum))?.players || [],
-            week.oppWeeklyGames,
-          )"
-          :key="idx"
-        >
-          <span :class="item.colorClass">{{ item.name }} ({{ item.count }})</span>
-          <template v-if="idx > 0">, </template>
-        </template>
+      <div class="summary__opponent" v-if="week.hasOpponent">
+        {{ formatWeeklyGames(week.oppWeeklyGames) }}
       </div>
     </div>
 

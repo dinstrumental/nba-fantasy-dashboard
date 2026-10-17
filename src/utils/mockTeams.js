@@ -1,15 +1,15 @@
 // User's draft team
 export const initialMyTeam = [
-  { name: 'Karl-Anthony Towns', positions: ['F', 'C'] },
-  { name: 'Trae Young', positions: ['G'] },
-  { name: 'Anthony Davis', positions: ['F', 'C'] },
-  { name: 'Dejounte Murray', positions: ['G'] },
-  { name: "De'Aaron Fox", positions: ['G'] },
-  { name: 'Paul George', positions: ['F'] },
-  { name: 'CJ McCollum', positions: ['G'] },
-  { name: 'Khaman Maluach', positions: ['C'] },
-  { name: 'Quentin Grimes', positions: ['G', 'F'] },
-  { name: 'Devin Vassell', positions: ['G', 'F'] },
+  { name: 'Karl-Anthony Towns', positions: ['F', 'C'], personId: 1626157 },
+  { name: 'Trae Young', positions: ['G'], personId: 1629027 },
+  { name: 'Anthony Davis', positions: ['F', 'C'], personId: 203076 },
+  { name: 'Dejounte Murray', positions: ['G'], personId: 1627749 },
+  { name: "De'Aaron Fox", positions: ['G'], personId: 1628368 },
+  { name: 'Paul George', positions: ['F'], personId: 202331 },
+  { name: 'CJ McCollum', positions: ['G'], personId: 203468 },
+  { name: 'Khaman Maluach', positions: ['C'], personId: null },
+  { name: 'Quentin Grimes', positions: ['G', 'F'], personId: 1629656 },
+  { name: 'Devin Vassell', positions: ['G', 'F'], personId: 1630170 },
 ]
 
 // 15 League Opponents
